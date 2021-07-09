@@ -1,12 +1,16 @@
 /* import Image from 'next/image' */
+import { useEffect, useState, useContext } from 'react'
+import { ThemeContext } from "../contexts/ThemeContext"
 import Head from 'next/head'
 import Link from 'next/link'
 import { Globe, TwitterLogo, GithubLogo } from "phosphor-react"
 import * as htmlToImage from 'html-to-image'
 
 export default function Card(user) {
-
-    const node = document.getElementById('card');
+    
+    /* const [theme, setTheme] = useState(""); */
+    const theme = useContext(ThemeContext);
+    const mode = theme.state.theme;
 
     const {
         login,
@@ -35,10 +39,19 @@ export default function Card(user) {
         return (node.id !== 'nxt-img');
     } */
 
+    /* useEffect(() => {
+        setTheme(localStorage.theme ? localStorage.theme : 'light');
+    }, [theme]) */
+
     const downloadSVG = (e) => {
         e.preventDefault();
 
-        htmlToImage.toSvg(node, {backgroundColor: "#FFFFFF"})
+        htmlToImage.toSvg(document.getElementById('card'), {
+            backgroundColor: "#FFFFFF",
+            style: {
+                backgroundColor: mode == "light" ? "#FFFFFF" : "#1F2937"
+            }
+        })
         .then(function (dataUrl) {
             var link = document.createElement('a');
                 link.download = `${login}-card.svg`;
@@ -50,7 +63,7 @@ export default function Card(user) {
     const downloadPNG = (e) => {
         e.preventDefault();
 
-        htmlToImage.toPng(node)
+        htmlToImage.toPng(document.getElementById('card'))
         .then(function (dataUrl) {
             var link = document.createElement('a');
                 link.download = `${login}-card.png`;
@@ -62,8 +75,11 @@ export default function Card(user) {
     const downloadJPEG = (e) => {
         e.preventDefault();
 
-        htmlToImage.toJpeg(node, {
-            backgroundColor: "#FFFFFF"
+        htmlToImage.toJpeg(document.getElementById('card'), {
+            backgroundColor: "#FFFFFF",
+            style: {
+                backgroundColor: mode == "light" ? "#FFFFFF" : "#1F2937"
+            }
         })
         .then(function (dataUrl) {
             var link = document.createElement('a');
@@ -93,14 +109,14 @@ export default function Card(user) {
                         Download
                     </p>
                     <ul className="dropdown-menu absolute hidden text-gray-700 z-10 shadow-lg">
-                        <li onClick={downloadPNG}><a className="text-sm rounded-t bg-white hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap" href="!#">.png</a></li>
-                        <li onClick={downloadJPEG}><a className="text-sm bg-white hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap" href="!#">.jpeg</a></li>
-                        <li onClick={downloadSVG}><a className="text-sm rounded-b bg-white hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap" href="!#">.svg</a></li>
+                        <li><a className="text-sm rounded-t bg-white hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:border-gray-700" href="!#" onClick={downloadPNG}>.png</a></li>
+                        <li><a className="text-sm bg-white hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:border-gray-700" href="!#" onClick={downloadJPEG}>.jpeg</a></li>
+                        <li><a className="text-sm rounded-b bg-white hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:border-gray-700" href="!#" onClick={downloadSVG}>.svg</a></li>
                     </ul>
                 </div>
             </div>
             
-            <div id="card" className="w-96 shadow-xl bg-white rounded-lg border-gray-100 border text-gray-800">
+            <div id="card" className="w-96 shadow-xl bg-white rounded-lg border-gray-100 border text-gray-800 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200">
 
                 {/* <div className="relative p-6 mt-4 w-11/12 mx-auto" style={{ height: 350 }} id="nxt-img">
                     <Image
@@ -124,7 +140,7 @@ export default function Card(user) {
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                                 </span>
-                                <p className="text-xs uppercase font-semibold text-gray-500">Available for hire</p>
+                                <p className="text-xs uppercase font-semibold text-gray-500 dark:text-gray-400">Available for hire</p>
                             </div>
                         ) : <></>
                     }
@@ -137,13 +153,13 @@ export default function Card(user) {
 
                     <div id="info" className="flex mb-4">
                         {
-                            location ? <div className="text-xs px-3 bg-gray-100 rounded-full mr-3">
+                            location ? <div className="text-xs px-3 bg-gray-100 rounded-full mr-3 dark:bg-gray-700">
                             <p className="text-sm">{location}</p>
                         </div> : <></>
                         }
 
                         {
-                            company ? <div className="text-xs px-3 bg-gray-100 rounded-full">
+                            company ? <div className="text-xs px-3 bg-gray-100 rounded-full dark:bg-gray-700">
                             <p className="text-sm">{company}</p>
                         </div> : <></>
                         }
@@ -155,7 +171,7 @@ export default function Card(user) {
                         </p>
                     </div>
 
-                    <div id="stats" className="flex justify-between mb-5 bg-gray-100 p-2 rounded-lg shadow-md">
+                    <div id="stats" className="flex justify-between mb-5 bg-gray-100 p-2 rounded-lg shadow-md dark:bg-gray-700">
                         <div className="mr-2">
                             <p className="text-xs">Repos</p>
                             <span className="font-medium text-xl">
@@ -184,16 +200,16 @@ export default function Card(user) {
 
                     <div id="social" className="flex">
                         <a href={html_url} target="_blank" rel="noreferrer">
-                            <GithubLogo size={28} color="#6B7280" className="mr-3" />
+                            <GithubLogo size={28} color={mode == "light" ? "#6B7280" : "#9CA3AF"} className="mr-3" />
                         </a>
                         {
                             blog ? <a href={website} target="_blank" rel="noreferrer">
-                            <Globe size={28} color="#6B7280" className="mr-3" />
+                            <Globe size={28} color={mode == "light" ? "#6B7280" : "#9CA3AF"} className="mr-3" />
                         </a> : null
                         }
                         {
                             twitter_username ? <a href={`https://twitter.com/${twitter_username}`} target="_blank" rel="noreferrer">
-                            <TwitterLogo size={28} color="#6B7280" className="mr-3" />
+                            <TwitterLogo size={28} color={mode == "light" ? "#6B7280" : "#9CA3AF"} className="mr-3" />
                         </a> : null
                         }
                     </div>

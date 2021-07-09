@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
+/* import Image from 'next/image' */
 import Link from 'next/link'
 import { Globe } from "phosphor-react"
 
@@ -15,15 +15,19 @@ export default function ErrorCard() {
                     &#8592; Back
                 </a>
             </Link>
-            <div className="w-96 shadow-xl bg-white rounded-lg border-gray-100 text-gray-800 border mt-2">
+            <div id="card" className="w-96 shadow-xl bg-white rounded-lg border-gray-100 text-gray-800 border mt-2 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200">
 
-                <div className="relative p-6 mt-4 w-11/12 mx-auto" style={{ height: 350 }}>
+                {/* <div className="relative p-6 mt-4 w-11/12 mx-auto" style={{ height: 350 }}>
                     <Image
                         src="/images/lo-fi.jpg"
                         alt="user"
                         layout="fill"
                         className="rounded-lg"
                     />
+                </div> */}
+
+                <div className="relative mt-4 w-11/12 mx-auto">
+                    <img src="/images/lo-fi.jpg" className="rounded-lg object-fill" alt="404" />
                 </div>
 
                 <div className="relative rounded-t-none p-6">
@@ -33,7 +37,7 @@ export default function ErrorCard() {
                     </h1>
 
                     <div id="info" className="flex mb-4">
-                        <div className="text-xs px-3 bg-gray-100 rounded-full mr-3">
+                        <div className="text-xs px-3 bg-gray-100 rounded-full mr-3 dark:bg-gray-700">
                             <p className="text-sm">Not Found</p>
                         </div>
                     </div>
@@ -44,7 +48,7 @@ export default function ErrorCard() {
                         </p>
                     </div>
 
-                    <div id="stats" className="flex justify-between mb-5 bg-gray-100 p-2 rounded-lg shadow-md">
+                    <div id="stats" className="flex justify-between mb-5 bg-gray-100 p-2 rounded-lg shadow-md dark:bg-gray-700">
                         <div className="mr-2">
                             <p className="text-xs">Repos</p>
                             <span className="font-medium text-xl">

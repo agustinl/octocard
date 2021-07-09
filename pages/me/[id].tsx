@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Card from '../../components/Card'
 import Skeleton from '../../components/Skeleton'
 import ErrorCard from '../../components/ErrorCard'
@@ -32,10 +33,14 @@ export default function Profile() {
 	}, [username.id]);
 
 	return (
-		<div className="flex flex-col h-full bg-gray-50">
+		<div className="flex flex-col h-full bg-gray-50 dark:bg-gray-900">
+			<Head>
+				<title>Searching... — Octocard</title>
+			</Head>
+
 			<Header />
 			
-			<main className="flex justify-center flex-grow flex-shrink items-center">
+			<main id="horizontal" className="flex justify-center flex-grow flex-shrink items-center">
 				{
 					loading ? <Skeleton /> : null
 				}

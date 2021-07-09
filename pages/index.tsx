@@ -33,7 +33,7 @@ export default function Home() {
 	}
 
 	return (
-		<div className="flex flex-col h-full bg-gray-50">
+		<div className="flex flex-col h-full bg-gray-50 dark:bg-gray-900">
 			<Header />
 			
 			<main className="flex justify-center flex-grow flex-shrink items-center">
@@ -59,18 +59,18 @@ export default function Home() {
 				</Head>
 
 				<form
-					className="w-96 shadow-xl bg-white rounded-lg border-gray-100 border p-6"
+					className="w-96 shadow-xl bg-white rounded-lg border-gray-100 border p-6 dark:bg-gray-800 dark:border-gray-700"
 					onSubmit={handleSubmit}
 				>
 					<div className="flex items-center">
 						
 						<div className="flex flex-wrap items-stretch w-full relative">
 							<div className="flex -mr-px">
-								<span className="flex items-center leading-normal bg-gray-100 rounded rounded-r-none border border-r-0 border-gray-300 px-3 whitespace-no-wrap text-gray-500 text-sm">@</span>
+								<span className="flex items-center leading-normal bg-gray-100 rounded rounded-r-none border border-r-0 border-gray-300 px-3 whitespace-no-wrap text-gray-500 text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400">@</span>
 							</div>
 							<input
 								type="text"
-								className="flex-shrink flex-grow flex-auto flex-1 border-gray-300 border rounded-md rounded-l-none p-2 mr-1 h-10 hover:border-gray-400" placeholder="octocat"
+								className="flex-shrink flex-grow flex-auto flex-1 border-gray-300 border rounded-md rounded-l-none p-2 mr-1 h-10 hover:border-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200" placeholder="octocat"
 								value={username}
 								onChange={handleChange}
 								/* onKeyPress={handleEnter} */
@@ -79,13 +79,13 @@ export default function Home() {
 
 						<button
 							type="submit"
-							className="bg-gray-800 rounded-md p-2 text-white font-medium cursor-pointer w-20 h-10 hover:bg-gray-700"						
+							className="bg-gray-800 rounded-md p-2 text-white font-medium cursor-pointer w-20 h-10 hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600"						
 						>Go!</button>
 					</div>
 					
 					{
 						error != "" ? (
-							<p className="flex-grow text-red-500 relative mt-3 text-sm">
+							<p className="flex-grow text-red-500 relative mt-3 text-sm dark:text-red-400">
 								{error}
 							</p>
 						) : null
