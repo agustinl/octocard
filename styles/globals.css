@@ -62,3 +62,7 @@ a {
 .dropdown:hover .dropdown-menu {
     display: block;
 }
+
+header .svg-position:hover svg {
+    animation: spin .7s linear;
+}

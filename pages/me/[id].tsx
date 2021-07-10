@@ -4,9 +4,13 @@ import Skeleton from '../../components/Skeleton'
 import ErrorCard from '../../components/ErrorCard'
 import Header from '../../components/Header'
 import { useRouter } from 'next/router'
-import React, { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
+import { DirectionContext } from "../../contexts/DirectionContext"
 
 export default function Profile() {
+	
+	const position = useContext(DirectionContext);
+    const direction = position.state.position;
 
 	const [user, setUser] = useState({});
 	const [error, setError] = useState(false);
@@ -40,7 +44,7 @@ export default function Profile() {
 
 			<Header />
 			
-			<main id="horizontal" className="flex justify-center flex-grow flex-shrink items-center">
+			<main id={direction} className="flex justify-center flex-grow flex-shrink items-center">
 				{
 					loading ? <Skeleton /> : null
 				}

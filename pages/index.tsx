@@ -40,17 +40,17 @@ export default function Home() {
 				<Head>
 					<title>Octocard</title>
 					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-					<meta name="description" content="Get your github information in card format" />
+					<meta name="description" content="Get your Github information in card format" />
 					<meta property="og:type" content="website" />
-					<meta name="og:title" property="og:title" content="" />
-					<meta name="og:description" property="og:description" content="" />
-					<meta property="og:site_name" content="" />
+					<meta name="og:title" property="og:title" content="Octocard" />
+					<meta name="og:description" property="og:description" content="Get your Github information in card format" />
+					<meta property="og:site_name" content="Octocard" />
 					<meta property="og:url" content="" />  
 					<meta name="twitter:card" content="summary" /> 
-					<meta name="twitter:title" content="" />
-					<meta name="twitter:description" content="" />
+					<meta name="twitter:title" content="Octocard" />
+					<meta name="twitter:description" content="Get your Github information in card format" />
 					<meta name="twitter:site" content="" />
-					<meta name="twitter:creator" content="" />
+					<meta name="twitter:creator" content="@agustinl" />
 					<link rel="icon" type="image/png" href="/favicon.ico" />
 					<link rel="apple-touch-icon" href="/favicon.ico" />
 					<meta property="og:image" content="" />  

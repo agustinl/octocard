@@ -2,11 +2,14 @@
 import { AppProps } from "next/app";
 import "../styles/globals.css";
 import { ThemeProvider } from "../contexts/ThemeContext";
+import { DirectionProvider } from "../contexts/DirectionContext";
 
 function App({ Component, pageProps }: AppProps) {
     return (
         <ThemeProvider>
-            <Component {...pageProps} />
+            <DirectionProvider>
+                <Component {...pageProps} />
+            </DirectionProvider>
         </ThemeProvider>
     );
 }
