@@ -52,7 +52,7 @@ export default function Profile() {
 					Object.keys(user).length > 0 && !loading ? <Card {...user} /> : null
 				}
 				{
-					error ? <ErrorCard /> : null
+					error ? <ErrorCard {...username} /> : null
 				}
 			</main>
 		</div>

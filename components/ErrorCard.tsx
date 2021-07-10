@@ -3,18 +3,24 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { Globe } from "phosphor-react"
 
-export default function ErrorCard() {
+export default function ErrorCard(username) {
     return (
         <div>
             <Head>
                 <title>@404 — Octocard</title>
             </Head>
 
-            <Link href="/">
-                <a className="text-sm text-gray-500">
-                    &#8592; Back
-                </a>
-            </Link>
+            <div className="flex justify-between items-center mb-2">
+
+                <Link href="/">
+                    <a className="text-sm text-gray-500">
+                        &#8592; Back
+                    </a>
+                </Link>
+
+                <p className="text-sm text-gray-500">Avatar by <a href="https://avatars.dicebear.com/" target="_blank" rel="noreferrer"><u>dicebear.com</u></a></p>
+            </div>
+
             <div id="card" className="w-96 shadow-xl bg-white rounded-lg border-gray-100 text-gray-800 border mt-2 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200">
 
                 {/* <div className="relative p-6 mt-4 w-11/12 mx-auto" style={{ height: 350 }}>
@@ -27,7 +33,7 @@ export default function ErrorCard() {
                 </div> */}
 
                 <div className="relative mt-4 w-11/12 mx-auto">
-                    <img src="/images/lo-fi.jpg" className="rounded-lg object-fill" alt="404" />
+                    <img src={`https://avatars.dicebear.com/api/identicon/${username.id}.svg?width=350&height=350`} className="rounded-lg object-fill" alt="404" />
                 </div>
 
                 <div className="relative rounded-t-none p-6">
@@ -44,7 +50,7 @@ export default function ErrorCard() {
 
                     <div className="mb-4">
                         <p className="text-sm">
-                            The user you are looking for was not found
+                        User {username.id} was not found
                         </p>
                     </div>
 
