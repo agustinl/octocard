@@ -37,7 +37,7 @@ export default function Profile() {
 	}, [username.id]);
 
 	return (
-		<div className="flex flex-col h-full bg-gray-50 dark:bg-gray-900">
+		<div className="flex flex-col h-full bg-gray-50 dark:bg-gray-900 font-sans">
 			<Head>
 				<title>Searching... — Octocard</title>
 			</Head>

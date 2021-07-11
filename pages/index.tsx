@@ -33,7 +33,7 @@ export default function Home() {
 	}
 
 	return (
-		<div className="flex flex-col h-full bg-gray-50 dark:bg-gray-900">
+		<div className="flex flex-col h-full bg-gray-50 dark:bg-gray-900 font-sans">
 			<Header />
 			
 			<main className="flex justify-center flex-grow flex-shrink items-center">
