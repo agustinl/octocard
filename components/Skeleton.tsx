@@ -1,7 +1,7 @@
 export default function Skeleton() {
     return (
-        <div>
-            <div id="card" className="w-96 shadow-xl bg-white rounded-lg border-gray-100 border mt-2 animate-pulse dark:bg-gray-800 dark:border-gray-700">
+        <div className="w-screen sm:w-auto">
+            <div id="card" className="shadow-xl bg-white rounded-lg border-gray-100 border mt-2 animate-pulse dark:bg-gray-800 dark:border-gray-700 w-11/12 sm:w-96 m-auto sm:m-0">
 
                 <div className="skeleton-img relative p-6 mt-4 w-11/12 mx-auto rounded-lg bg-gray-200 dark:bg-gray-700">
                 </div>

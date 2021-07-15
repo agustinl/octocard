@@ -64,3 +64,10 @@ a {
 header .svg-position:hover svg {
     animation: spin .7s linear;
 }
+
+@media (max-width: 786px) {
+    #horizontal #card {
+        width:96vw;
+        overflow:scroll;
+    }
+}

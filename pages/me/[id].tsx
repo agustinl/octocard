@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { useState, useEffect, useContext } from "react"
 import { DirectionContext } from "../../contexts/DirectionContext"
 
-export default function Profile() {
+export default function Profile(Props) {
 	
 	const position = useContext(DirectionContext);
     const direction = position.state.position;
@@ -23,12 +23,14 @@ export default function Profile() {
 		fetch(`https://api.github.com/users/${username.id}`)
 			.then(function(response) {
 				if (!response.ok) {
+					setError(true);
 					throw Error(response.statusText);
 				}
 				return response.json();
 			}).then(function(response) {
 				setUser(response);
 				setLoading(false);
+				setError(false);
 			}).catch(function(error) {
 				setError(true);
 				setLoading(false);
@@ -37,14 +39,16 @@ export default function Profile() {
 	}, [username.id]);
 
 	return (
-		<div className="flex flex-col h-full bg-gray-50 dark:bg-gray-900 font-sans">
+		<>
 			<Head>
-				<title>Searching... — Octocard</title>
+				<title>Searching... | Octocard</title>
 			</Head>
 
-			<Header />
+			<Header
+				iconDirection={true}
+			/>
 			
-			<main id={direction} className="flex justify-center flex-grow flex-shrink items-center">
+			<div id={direction} className="flex justify-center flex-grow flex-shrink items-center pt-3 pb-6">
 				{
 					loading ? <Skeleton /> : null
 				}
@@ -54,7 +58,7 @@ export default function Profile() {
 				{
 					error ? <ErrorCard {...username} /> : null
 				}
-			</main>
-		</div>
+			</div>
+		</>
 	)
 }

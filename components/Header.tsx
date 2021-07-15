@@ -3,7 +3,7 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import { DirectionContext } from "../contexts/DirectionContext";
 import { GithubLogo, Moon, Sun, ArrowClockwise } from "phosphor-react"
 
-export default function Header() {
+export default function Header({ iconDirection }) {
 
     const theme = useContext(ThemeContext);
     const mode = theme.state.theme;
@@ -64,19 +64,21 @@ export default function Header() {
     return (
         <header className="flex justify-between flex-grow-0 flex-shrink pt-4 px-4">
             <div className="flex flex-grow-1">
-                <a onClick={themeMode} className="cursor-pointer mr-4">
+                <a onClick={themeMode} className="cursor-pointer mr-4" aria-label="Switch Theme">
                     {
                         mode == "light" ? <Moon size={28} color="#374151" />
                         : <Sun size={28} color="#9CA3AF" />
                     }
                 </a>
 
-                <a onClick={positionMode} className="svg-position cursor-pointer">
-                    <ArrowClockwise size={28} color={mode == "light" ? "#374151" : "#9CA3AF"} />
-                </a>
+                {
+                    iconDirection ? <a onClick={positionMode} className="svg-position cursor-pointer" aria-label="Rotate Card">
+                        <ArrowClockwise size={28} color={mode == "light" ? "#374151" : "#9CA3AF"} />
+                    </a> : null
+                }
             </div>
 
-            <a href="https://github.com/agustinl/octocard" target="_blank" rel="noreferrer">
+            <a href="https://github.com/agustinl/octocard" target="_blank" rel="noreferrer" aria-label="GitHub Repository">
                 <GithubLogo size={28} color={mode == "light" ? "#374151" : "#9CA3AF"} />
             </a>
         </header>

@@ -1,6 +1,7 @@
 /* import Image from 'next/image' */
 import { useEffect, useState, useContext } from 'react'
 import { ThemeContext } from "../contexts/ThemeContext"
+/* import { DirectionContext } from "../contexts/DirectionContext" */
 import Head from 'next/head'
 import Link from 'next/link'
 import { Globe, TwitterLogo, GithubLogo } from "phosphor-react"
@@ -8,9 +9,13 @@ import * as htmlToImage from 'html-to-image'
 
 export default function Card(user) {
     
-    /* const [theme, setTheme] = useState(""); */
+    /* const [canvasSize, setCanvasSize] = useState({}); */
+
     const theme = useContext(ThemeContext);
     const mode = theme.state.theme;
+
+    /* const position = useContext(DirectionContext); */
+    /* const direction = position.state.position; */
 
     const {
         login,
@@ -30,6 +35,7 @@ export default function Card(user) {
     } = user;
 
     var website = blog;
+    /* const card = document.getElementById('card'); */
 
     if(!blog.includes("http")) {
         website = "//" + blog;
@@ -40,8 +46,11 @@ export default function Card(user) {
     } */
 
     /* useEffect(() => {
-        setTheme(localStorage.theme ? localStorage.theme : 'light');
-    }, [theme]) */
+        setCanvasSize({
+            width: card.offsetWidth,
+            height: card.offsetHeight
+        });
+    }, [direction]) */
 
     const downloadSVG = (e) => {
         e.preventDefault();
@@ -93,11 +102,19 @@ export default function Card(user) {
         <div>
 
             <Head>
-                <title>@{login} — Octocard</title>
+                <title>@{login} | Octocard</title>
                 <meta name="description" content={bio} />
+                <meta name="og:title" property="og:title" content={`@${login} | Octocard`} />
+                <meta name="og:description" property="og:description" content={bio} />
+                <meta property="og:url" content={`https://octocard.vercel.app/me/${login}`} />
+                <meta name="twitter:title" content={`@${login} | Octocard`} />
+                <meta name="twitter:description" content={bio} />
+                <meta name="twitter:site" content={`https://octocard.vercel.app/me/${login}`} />
+                <meta property="og:image" content={`https://og-image.vercel.app/**${login}**%20by%20Octocard.png?theme=${mode}&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fvercel-triangle-${mode == "dark" ? "white" : "black"}.svg&images=https%3A%2F%2Foctocard.vercel.app%2Fcard.png&widths=undefined&widths=200&heights=undefined&heights=200`} />
+			    <meta name="twitter:image" content={`https://og-image.vercel.app/**${login}**%20by%20Octocard.png?theme=${mode}&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fvercel-triangle-${mode == "dark" ? "white" : "black"}.svg&images=https%3A%2F%2Foctocard.vercel.app%2Fcard.png&widths=undefined&widths=200&heights=undefined&heights=200`} />
             </Head>
             
-            <div className="flex justify-between items-center mb-2">
+            <div className="flex justify-between items-center w-11/12 sm:w-full m-auto mb-2">
                 <Link href="/">
                     <a className="text-sm text-gray-500 hover:text-gray-600">
                         &#8592; Back
@@ -116,7 +133,7 @@ export default function Card(user) {
                 </div>
             </div>
             
-            <div id="card" className="w-96 shadow-xl bg-white rounded-lg border-gray-100 border text-gray-800 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200">
+            <div id="card" className="shadow-xl bg-white rounded-lg border-gray-100 border text-gray-800 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 w-11/12 sm:w-96 m-auto sm:m-0">
 
                 {/* <div className="relative p-6 mt-4 w-11/12 mx-auto" style={{ height: 350 }} id="nxt-img">
                     <Image
@@ -151,15 +168,15 @@ export default function Card(user) {
                         </a>
                     </h1>
 
-                    <div id="info" className="flex mb-4">
+                    <div id="info" className="flex flex-wrap">
                         {
-                            location ? <div className="text-xs px-3 bg-gray-100 rounded-full mr-3 dark:bg-gray-700">
+                            location ? <div className="text-xs px-3 bg-gray-100 rounded-full mr-3 dark:bg-gray-700 mb-4">
                             <p className="text-sm">{location}</p>
                         </div> : <></>
                         }
 
                         {
-                            company ? <div className="text-xs px-3 bg-gray-100 rounded-full dark:bg-gray-700">
+                            company ? <div className="text-xs px-3 bg-gray-100 rounded-full dark:bg-gray-700 mb-4">
                             <p className="text-sm">{company}</p>
                         </div> : <></>
                         }
@@ -199,16 +216,16 @@ export default function Card(user) {
                     </div>
 
                     <div id="social" className="flex">
-                        <a href={html_url} target="_blank" rel="noreferrer">
+                        <a href={html_url} target="_blank" rel="noreferrer" aria-label="GitHub Profile">
                             <GithubLogo size={28} color={mode == "light" ? "#6B7280" : "#9CA3AF"} className="mr-3" />
                         </a>
                         {
-                            blog ? <a href={website} target="_blank" rel="noreferrer">
+                            blog ? <a href={website} target="_blank" rel="noreferrer" aria-label="Website">
                             <Globe size={28} color={mode == "light" ? "#6B7280" : "#9CA3AF"} className="mr-3" />
                         </a> : null
                         }
                         {
-                            twitter_username ? <a href={`https://twitter.com/${twitter_username}`} target="_blank" rel="noreferrer">
+                            twitter_username ? <a href={`https://twitter.com/${twitter_username}`} target="_blank" rel="noreferrer" aria-label="Twitter">
                             <TwitterLogo size={28} color={mode == "light" ? "#6B7280" : "#9CA3AF"} className="mr-3" />
                         </a> : null
                         }
