@@ -19,7 +19,6 @@ export default function Profile(Props) {
 	const username = router.query;
 
 	useEffect(() => {
-		// GET request using fetch inside useEffect React hook
 		fetch(`https://api.github.com/users/${username.id}`)
 			.then(function(response) {
 				if (!response.ok) {
@@ -41,7 +40,8 @@ export default function Profile(Props) {
 	return (
 		<>
 			<Head>
-				<title>Searching... | Octocard</title>
+				<title>@{username.id} | Octocard</title>
+				<link rel="canonical" href={`https://octocard.vercel.app/me/${username.id}`} />
 			</Head>
 
 			<Header

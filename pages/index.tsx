@@ -15,10 +15,7 @@ export default function Home() {
 	}
 
 	const handleSubmit = e => {
-		e.preventDefault()
-		/* if(e.key === 'Enter'){
-			setUsername(e.target.value);
-		} */
+		e.preventDefault();
 
 		if(username.trim() === '') {
             setError("GitHub username is required.");
@@ -54,7 +51,6 @@ export default function Home() {
 								className="flex-shrink flex-grow flex-auto flex-1 border-gray-300 border rounded-md rounded-l-none p-2 h-10 hover:border-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200" placeholder="octocat"
 								value={username}
 								onChange={handleChange}
-								/* onKeyPress={handleEnter} */
 							/>
 						</div>					
 

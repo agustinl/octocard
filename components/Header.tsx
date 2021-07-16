@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from 'react';
+import { useEffect, useContext } from 'react';
 import { ThemeContext } from "../contexts/ThemeContext";
 import { DirectionContext } from "../contexts/DirectionContext";
 import { GithubLogo, Moon, Sun, ArrowClockwise } from "phosphor-react"
@@ -10,7 +10,6 @@ export default function Header({ iconDirection }) {
 
     const position = useContext(DirectionContext);
     const direction = position.state.position;
-    /* const [theme, setTheme] = useState('light'); */
 
     useEffect(() => {
         if (localStorage.octocardTheme === 'dark' || (!('octocardTheme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -24,20 +23,7 @@ export default function Header({ iconDirection }) {
             position.dispatch({ type: localStorage.octocardDirection });
         }
 
-        /* setTheme(localStorage.octocardTheme); */
-
     }, []);
-
-    /* const themeMode = () => {
-        if (localStorage.octocardTheme === 'dark') {
-            localStorage.octocardTheme = 'light';
-            document.documentElement.classList.remove('dark');
-        } else {
-            localStorage.octocardTheme = 'dark';
-            document.documentElement.classList.add('dark');
-        }
-        setTheme(localStorage.octocardTheme);
-    } */
 
     const themeMode = () => {
         if (mode == "dark") {

@@ -1,21 +1,14 @@
-/* import Image from 'next/image' */
-import { useEffect, useState, useContext } from 'react'
+import { useContext } from 'react'
 import { ThemeContext } from "../contexts/ThemeContext"
-/* import { DirectionContext } from "../contexts/DirectionContext" */
 import Head from 'next/head'
 import Link from 'next/link'
 import { Globe, TwitterLogo, GithubLogo } from "phosphor-react"
 import * as htmlToImage from 'html-to-image'
 
 export default function Card(user) {
-    
-    /* const [canvasSize, setCanvasSize] = useState({}); */
 
     const theme = useContext(ThemeContext);
     const mode = theme.state.theme;
-
-    /* const position = useContext(DirectionContext); */
-    /* const direction = position.state.position; */
 
     const {
         login,
@@ -35,22 +28,10 @@ export default function Card(user) {
     } = user;
 
     var website = blog;
-    /* const card = document.getElementById('card'); */
 
     if(!blog.includes("http")) {
         website = "//" + blog;
     }
-
-    /* function filter (node) {
-        return (node.id !== 'nxt-img');
-    } */
-
-    /* useEffect(() => {
-        setCanvasSize({
-            width: card.offsetWidth,
-            height: card.offsetHeight
-        });
-    }, [direction]) */
 
     const downloadSVG = (e) => {
         e.preventDefault();
@@ -116,13 +97,13 @@ export default function Card(user) {
             
             <div className="flex justify-between items-center w-11/12 sm:w-full m-auto mb-2">
                 <Link href="/">
-                    <a className="text-sm text-gray-500 hover:text-gray-600">
+                    <a className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-500">
                         &#8592; Back
                     </a>
                 </Link>
 
                 <div className="dropdown inline-block relative">
-                    <p className="text-sm text-gray-500 hover:text-gray-600 cursor-pointer">
+                    <p className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-500 cursor-pointer">
                         Download
                     </p>
                     <ul className="dropdown-menu absolute hidden text-gray-700 z-10 shadow-lg">
@@ -135,17 +116,8 @@ export default function Card(user) {
             
             <div id="card" className="shadow-xl bg-white rounded-lg border-gray-100 border text-gray-800 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 w-11/12 sm:w-96 m-auto sm:m-0">
 
-                {/* <div className="relative p-6 mt-4 w-11/12 mx-auto" style={{ height: 350 }} id="nxt-img">
-                    <Image
-                        src={avatar_url}
-                        alt={login}
-                        layout="fill"
-                        className="rounded-lg"
-                    />
-                </div> */}
-
                 <div className="relative mt-4 w-11/12 mx-auto">
-                    <img src={avatar_url} className="rounded-lg object-fill" alt={login} />
+                    <img src={avatar_url} className="rounded-lg object-fill" alt={login} width="360" height="360" />
                 </div>
 
                 <div className="relative rounded-t-none p-6">
