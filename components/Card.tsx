@@ -1,14 +1,21 @@
-import { useContext } from 'react'
+import { useContext, useRef, useEffect } from 'react'
 import { ThemeContext } from "../contexts/ThemeContext"
+import { MoveContext } from "../contexts/MoveContext"
 import Head from 'next/head'
 import Link from 'next/link'
 import { Globe, TwitterLogo, GithubLogo } from "phosphor-react"
 import * as htmlToImage from 'html-to-image'
+import VanillaTilt from 'vanilla-tilt'
 
 export default function Card(user) {
 
+    const tiltRef = useRef();
+
     const theme = useContext(ThemeContext);
     const mode = theme.state.theme;
+
+    const move = useContext(MoveContext);
+    const tilt = move.state.tilt;
 
     const {
         login,
@@ -32,6 +39,24 @@ export default function Card(user) {
     if(!blog.includes("http")) {
         website = "//" + blog;
     }
+
+    useEffect(() => {
+        if(tilt) {
+            const tiltNode = tiltRef.current
+            const vanillaTiltOptions = {
+                reverse: true,
+                max: 5,
+                speed: 1000,
+                glare: true,
+                "max-glare": 0.1,
+            }
+            VanillaTilt.init(tiltNode, vanillaTiltOptions)
+            return () => {
+                // @ts-ignore
+                tiltNode.vanillaTilt.destroy()
+            }
+        }
+    }, [tilt])
 
     const downloadSVG = (e) => {
         e.preventDefault();
@@ -114,7 +139,7 @@ export default function Card(user) {
                 </div>
             </div>
             
-            <div id="card" className="shadow-xl bg-white rounded-lg border-gray-100 border text-gray-800 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 w-11/12 sm:w-96 m-auto sm:m-0">
+            <div id="card" ref={tiltRef} className={`shadow-xl bg-white rounded-lg border-gray-100 border text-gray-800 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 w-11/12 sm:w-96 m-auto sm:m-0 ${tilt ? 'card-tilt' : ''}`}>
 
                 <div className="relative mt-4 w-11/12 mx-auto">
                     <img src={avatar_url} className="rounded-lg object-fill" alt={login} width="360" height="360" />

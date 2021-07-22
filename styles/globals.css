@@ -65,6 +65,20 @@ header .svg-position:hover svg {
     animation: spin .7s linear;
 }
 
+.card-tilt {
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+}
+
+.card-tilt img,
+.card-tilt h1,
+.card-tilt #stats,
+.card-tilt #social a,
+.card-tilt #social a svg,
+.card-tilt #info > div {
+    transform: translateZ(20px);
+}
+
 @media (max-width: 786px) {
     #horizontal #card {
         width:96vw;

@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { useState, useEffect, useContext } from "react"
 import { DirectionContext } from "../../contexts/DirectionContext"
 
+
 export default function Profile(Props) {
 	
 	const position = useContext(DirectionContext);
@@ -46,6 +47,7 @@ export default function Profile(Props) {
 
 			<Header
 				iconDirection={true}
+				iconCube={true}
 			/>
 			
 			<div id={direction} className="flex justify-center flex-grow flex-shrink items-center pt-3 pb-6">

@@ -10,5 +10,6 @@ Get your GitHub information in card format.
 - UI Framework: [Tailwindcss](https://tailwindcss.com/)
 - Deploy: [Vercel](https://vercel.com/)
 - REST API: [GitHub API](https://docs.github.com/en/rest)
+- Icons by [Phosphor Icons](https://phosphoricons.com/)
 
 2021
